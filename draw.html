@@ -7,6 +7,7 @@
     <title>Drawing Program</title>
 
     <style>
+
         h1{
             text-align: center;
             text-decoration: underline;
@@ -15,48 +16,60 @@
             padding-bottom: 30px;
             margin-top: 0px;
         }
+
         #drawingBoard {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+            /* display: flex; */
+            /* flex-wrap: wrap; */
+            /* gap: 10px; */
+            /* display:inline; */
+            /* display:block; */
         }
 
-        /* div{
-            margin-top: 50px;
-            margin-left:50px;
-            margin-right:50px;
-        } */
-        p {
+        .box {
             border: .01px solid rgb(204, 204, 204);
-            padding: 10px;
-            margin: -5px;
-            font-size: 24px;
+            padding: 5px;
+            
+            display: inline;
+            
+            width: 30px;
+            height: 30px;
+        }
+
+        .row{
+            display: block;
         }
         .colored {
             background-color: rgb(0, 0, 0);
             border: .01px solid rgb(0, 0, 0);
         }
 
-        .swatchstyle{
-            width: 10px;
-            display: flex;
-            flex-direction: row;
+        .swatch{
+            position: relative;
+            top: 20px;
             margin: 10px;
+            border: .01px solid rgb(204, 204, 204);
+            padding-left: 40px;
+            padding-top: 10px;
         }
 
-        .swatchstyle:hover{
-            border: solid 10px black;
+        .swatch:hover{
+            border: solid 5px black;
         }
 
         .swatchselected{
-            border: solid 10px black;
+            border: solid 5px black;
         }
 
         .settings{
-            background-color: grey;
+            background-color: rgb(216, 216, 216);
             padding: 30px;
             position: absolute;
         }
+
+        button{
+            margin-top: 40px;
+        }
+
     </style>
 
 </head>
@@ -66,15 +79,17 @@
 
     <div class="settings">
         <div>
-            <label>Width: </label><input type = "number" id = "w" value = "50">
+            <label>Width: </label>
+            <input type = "number" id = "w" value = "50">
         </div>
         <div>
-            <label>Height: </label><input type = "number" id = "h" value = "50">
+            <label>Height: </label>
+            <input type = "number" id = "h" value = "50">
         </div>
     
-        <label>Color: </label>
+        <label class="color">Color: </label>
+
         <div class= "presets">
-    
         </div>
     
         <div>
@@ -89,18 +104,23 @@
     <script>
 
         function generateBoard(){
-            let drawingBoard = document.querySelector("div");
+            let drawingBoard = document.querySelector("#drawingBoard");
             drawingBoard.replaceChildren();
 
             let width = document.querySelector("#w");
             let height = document.querySelector("#h");
-            for (let i = 0; i < Number(width.value); i++){
-                 //for (let j = 0; j < Number(height.value); j++){
-                    let elm = document.createElement("p");
-                    drawingBoard.appendChild(elm);
+   
+            for (let i = 0; i < Number(height.value); i++){
+                let row = document.createElement("div");
+                drawingBoard.appendChild(row);
+                row.classList.add("row");
+                 for (let j = 0; j < Number(width.value); j++){
+                    let elm = document.createElement("span");
+                    elm.classList.add("box");
+                    row.appendChild(elm);
                     elm.addEventListener("click", color);
                  }
-            //}
+            }
         }
 
         let presetBar = document.querySelector(".presets");
@@ -108,9 +128,9 @@
         let colors = ["red", "green", "blue", "pink"];
 
         colors.forEach(function(color){
-            let swatch = document.createElement("p");
+            let swatch = document.createElement("span");
+            swatch.classList.add("swatch")
             swatch.style.background = color;
-            swatch.classList.add("swatchstyle");
             presetBar.appendChild(swatch);
             
             swatch.addEventListener("click", selected);
@@ -123,7 +143,7 @@
 
         function selected(event){
             let selectedColor = event.currentTarget;
-            selectedColor.classList.toggle(".swatchselected");
+            selectedColor.classList.toggle("swatchselected");
         }
 
         let createButton = document.querySelector("button");
