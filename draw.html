@@ -1,3 +1,9 @@
+<!-- SOURCES:
+
+https://www.codegrepper.com/code-examples/javascript/frameworks/dist/remove+all+class+in+js -->
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,13 +24,8 @@
         }
 
         #drawingBoard {
-            /* display: flex; */
-            /* flex-wrap: wrap; */
-            /* gap: 10px; */
-            /* display:inline; */
-            /* display:block; */
-            margin-left: 320px;
-            margin-top: 23px;
+            /* margin-left: 320px; */
+            margin-top: 240px;
             width: 10000px;
         }
 
@@ -32,18 +33,17 @@
             border: .01px solid rgb(204, 204, 204);
             padding-left: 10px;
             padding-right:10px;
-            /* margin-top: -20px; */
+            padding-top: 2px;
             
             display: inline;
         }
 
         .row{
             display: block;
-            margin: 1px;
+            margin: 4px;
             width: 1000px;
  
         }
-
 
         .colored {
             background-color: rgb(0, 0, 0);
@@ -64,14 +64,14 @@
         }
 
         .swatchselected{
-            border: solid 5px black;
+            border: solid 3px black;
         }
 
         .settings{
             background-color: rgb(216, 216, 216);
             padding: 30px;
             position: absolute;
-            width: 240px;
+            width: 375px;
         }
 
         button{
@@ -133,26 +133,43 @@
 
         let presetBar = document.querySelector(".presets");
 
-        let colors = ["red", "green", "blue", "pink"];
+        let colors = ["white", "red", "yellow", "green", "blue", "black"];
+        var result = 0;
 
         colors.forEach(function(color){
             let swatch = document.createElement("span");
-            swatch.classList.add("swatch")
+            swatch.classList.add("swatch");
             swatch.style.background = color;
             presetBar.appendChild(swatch);
             
-            swatch.addEventListener("click", selected);
+            swatch.addEventListener("click", function (event){
+                let selectedColor = event.currentTarget;
+
+                elements=document.getElementsByClassName("swatchselected")
+
+                for(element of elements){
+                    element.classList.remove("swatchselected")
+                }
+
+                selectedColor.classList.add("swatchselected");
+                result = selectedColor.style.background;
+                console.log(result);
+            });
         })
 
         function color(event){
             let clickedElm = event.currentTarget;
+            if(clickedElm.classList.contains("colored")){
+                clickedElm.style.background = "white";
+                clickedElm.style.border = ".01px solid rgb(204, 204, 204)";
+            } else {
+                clickedElm.style.background = result;
+                clickedElm.style.border = ".01px solid " + result;
+            }
             clickedElm.classList.toggle("colored");
         }
 
-        function selected(event){
-            let selectedColor = event.currentTarget;
-            selectedColor.classList.toggle("swatchselected");
-        }
+        
 
         let createButton = document.querySelector("button");
         createButton.addEventListener("click", generateBoard)
