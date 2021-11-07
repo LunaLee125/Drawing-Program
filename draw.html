@@ -11,8 +11,15 @@ https://www.codegrepper.com/code-examples/javascript/frameworks/dist/remove+all+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drawing Program</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 
     <style>
+
+        html{
+            font-family: Lobster;
+        }
 
         h1{
             text-align: center;
@@ -25,8 +32,9 @@ https://www.codegrepper.com/code-examples/javascript/frameworks/dist/remove+all+
 
         #drawingBoard {
             /* margin-left: 320px; */
-            margin-top: 240px;
-            width: 10000px;
+            /* margin-top: 300px; */
+            margin-top: 24px;
+            margin-left: -4px;
         }
 
         .box {
@@ -46,8 +54,8 @@ https://www.codegrepper.com/code-examples/javascript/frameworks/dist/remove+all+
         }
 
         .colored {
-            background-color: rgb(0, 0, 0);
-            border: .01px solid rgb(0, 0, 0);
+            /* background-color: rgb(0, 0, 0);
+            border: .01px solid rgb(0, 0, 0); */
         }
 
         .swatch{
@@ -57,6 +65,7 @@ https://www.codegrepper.com/code-examples/javascript/frameworks/dist/remove+all+
             border: .01px solid rgb(204, 204, 204);
             padding-left: 40px;
             padding-top: 10px;
+            border-radius: 10px;
         }
 
         .swatch:hover{
@@ -71,11 +80,31 @@ https://www.codegrepper.com/code-examples/javascript/frameworks/dist/remove+all+
             background-color: rgb(216, 216, 216);
             padding: 30px;
             position: absolute;
-            width: 375px;
+            width: 380px;
         }
 
         button{
             margin-top: 40px;
+        }
+
+        .wi{
+            margin-bottom: 10px;
+        }
+
+        .he{
+            margin-bottom: 10px;
+        }
+
+        .create{
+            font-family: Lobster;
+            border-color: black;
+            border-radius: 10px;
+            width: 100px;
+            height: 30px;
+        }
+
+        #w,#h{
+            height: 20px;
         }
 
     </style>
@@ -83,17 +112,20 @@ https://www.codegrepper.com/code-examples/javascript/frameworks/dist/remove+all+
 </head>
 <body>
 
-    <h1>Welcome to this drawing app!</h1>
+    <h1>WELCOME! THIS IS A DRAWING APP!</h1>
 
     <div class="settings">
-        <div>
-            <label>Width: </label>
-            <input type = "number" id = "w" value = "50">
+        <div class = "area">
+            <div class = "wi">
+                <label>Width: </label>
+                <input type = "number" id = "w" value = "64">
+            </div>
+            <div class = "he">
+                <label>Height: </label>
+                <input type = "number" id = "h" value = "28">
+            </div>
         </div>
-        <div>
-            <label>Height: </label>
-            <input type = "number" id = "h" value = "50">
-        </div>
+        
     
         <label class="color">Color: </label>
 
@@ -101,7 +133,7 @@ https://www.codegrepper.com/code-examples/javascript/frameworks/dist/remove+all+
         </div>
     
         <div>
-            <button>Create!</button>
+            <button class="create">Create!</button>
         </div>
     </div>
 
@@ -161,10 +193,10 @@ https://www.codegrepper.com/code-examples/javascript/frameworks/dist/remove+all+
             let clickedElm = event.currentTarget;
             if(clickedElm.classList.contains("colored")){
                 clickedElm.style.background = "white";
-                clickedElm.style.border = ".01px solid rgb(204, 204, 204)";
+                clickedElm.style.border = "0.1px solid rgb(204, 204, 204)";
             } else {
                 clickedElm.style.background = result;
-                clickedElm.style.border = ".01px solid " + result;
+                // clickedElm.style.border = ".01px solid white";
             }
             clickedElm.classList.toggle("colored");
         }
