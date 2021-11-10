@@ -2,8 +2,6 @@
 
 https://www.codegrepper.com/code-examples/javascript/frameworks/dist/remove+all+class+in+js -->
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,8 +29,6 @@ https://www.codegrepper.com/code-examples/javascript/frameworks/dist/remove+all+
         }
 
         #drawingBoard {
-            /* margin-left: 320px; */
-            /* margin-top: 300px; */
             margin-top: 24px;
             margin-left: -4px;
         }
@@ -51,11 +47,6 @@ https://www.codegrepper.com/code-examples/javascript/frameworks/dist/remove+all+
             margin: 4px;
             width: 1000px;
  
-        }
-
-        .colored {
-            /* background-color: rgb(0, 0, 0);
-            border: .01px solid rgb(0, 0, 0); */
         }
 
         .swatch{
@@ -80,7 +71,7 @@ https://www.codegrepper.com/code-examples/javascript/frameworks/dist/remove+all+
             background-color: rgb(216, 216, 216);
             padding: 30px;
             position: absolute;
-            width: 380px;
+            width: 315px;
         }
 
         button{
@@ -159,13 +150,14 @@ https://www.codegrepper.com/code-examples/javascript/frameworks/dist/remove+all+
                     elm.classList.add("box");
                     row.appendChild(elm);
                     elm.addEventListener("click", color);
+
                  }
             }
         }
 
         let presetBar = document.querySelector(".presets");
 
-        let colors = ["white", "red", "yellow", "green", "blue", "black"];
+        let colors = ["red", "yellow", "green", "blue", "black"];
         var result = 0;
 
         colors.forEach(function(color){
@@ -196,12 +188,9 @@ https://www.codegrepper.com/code-examples/javascript/frameworks/dist/remove+all+
                 clickedElm.style.border = "0.1px solid rgb(204, 204, 204)";
             } else {
                 clickedElm.style.background = result;
-                // clickedElm.style.border = ".01px solid white";
             }
             clickedElm.classList.toggle("colored");
         }
-
-        
 
         let createButton = document.querySelector("button");
         createButton.addEventListener("click", generateBoard)
